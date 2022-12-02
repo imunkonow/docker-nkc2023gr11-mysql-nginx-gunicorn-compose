@@ -1,0 +1,37 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <form class="feedback-form" action="test.html" method="post">
+
+        <div class="fuchidori">
+            <p class="headline">
+                質問一覧
+            </p>
+        </div>
+       
+        <ul>
+            {% csrf_token%}
+            {% for obj in object_list %}
+                {% if obj.FB != None %}
+                    <div class="textarea">
+                        <ol>
+                            <h4 style="color: #0000EE"><a href="/feedback_only/{{ obj.id }}/">質問:{{obj.id}}</a></h4>
+                            <li type="circle">{{ obj.Question }}</li>
+                            <h4 style="color: #0000ff">回答</h4>
+                            <li type="circle">{{ obj.Answer }}</li>
+                            <h4 style="color: #0000ff">フィードバック</h4>
+                            <li type="circle">{{ obj.FB }}</li>
+                        </ol>
+                    
+                        <!-- <br> -->
+                    </div>
+                {% endif%}
+            {% endfor %}
+        </ul>
+    
+      </form>
+      <button onclick="location.href='./'">戻る</button>
+
+{% endblock %}

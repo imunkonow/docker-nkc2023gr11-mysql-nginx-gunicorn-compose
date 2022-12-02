@@ -1,0 +1,46 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form class="questionlist-form" method="post">
+    
+    <div class="fuchidori">
+        <p class="headline">
+            質問一覧
+        </p>
+    </div>
+
+    <div>
+        {% csrf_token %}
+        <input type="radio" id="all"
+        name="Genre" value="all" checked>
+        <label for="all">全て</label>
+
+        <input type="radio" id="classic"
+        name="Genre" value="classic" >
+        <label for="classic">定番</label>
+
+        <input type="radio" id="reverse"
+        name="Genre" value="reverse">
+        <label for="reverse">逆質問</label>
+
+        <input type="submit">
+    </div>
+
+    <ul>
+        {% csrf_token%}
+        {% for obj in object_list %}
+                <div class="textarea">
+                    <ol>
+                        <h4 style="color: #0000EE"><a href="/answer_let/{{ obj.id }}/">質問:{{obj.id}}</a></h4>
+                        <li type="circle">{{ obj.Question }}</li>
+                    </ol>
+                
+                </div>
+        {% endfor %}
+    </ul>
+
+</form>
+<button onclick="location.href='./'">戻る</button>
+{% endblock %}

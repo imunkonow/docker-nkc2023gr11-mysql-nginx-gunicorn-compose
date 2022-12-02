@@ -1,0 +1,30 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+
+ {% if AccountCreate %}
+   <h1>登録完了!</h1>
+   <input type="button" value="戻る" onClick="location.href='./'" />
+
+ {% else %}
+   <div class="reg">
+      <h1>新規登録</h1>
+   <table class="register_reg_form">
+
+   <form enctype="multipart/form-data" method="post">
+   {% csrf_token %}
+   {{ account_form.as_table }}
+   {{ add_account_form.as_table }}   
+   <tr><td></td><td>
+   <input class="btn" type="submit" name="" value="登録">
+   </td></tr>
+   </form>
+
+   </table>
+   </div>
+ {% endif %}
+ <button onclick="location.href='./'">戻る</button>
+
+ 
+{%endblock%}

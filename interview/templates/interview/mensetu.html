@@ -1,0 +1,152 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+{% comment %}
+
+<head>
+  <script type="" modlue>
+    import * as sdk from "microsoft-cognitiveservices-speech-sdk";
+  </script>
+  <script src="{% static 'js/microsoft.cognitiveservices.speech.sdk.bundle.js' %}">
+  </script>
+</head> {% endcomment %}
+
+<form class="mensetsu-form" action="" method="post" width="100%" enctype="multipart/form-data">
+  <!-- <div class=""> -->
+  {% csrf_token %}
+  {% if nextgenre == 'reverse' %}
+    <p>ジャンル<br>
+      <input type="radio" id="contactChoice3" name="contact" value="random">
+    <label for="contactChoice3">ランダム</label>
+      <input type="radio" id="contactChoice1" name="contact" value="classic">
+      <label for="contactChoice1">定番</label>
+      <input type="radio" id="contactChoice2" name="contact" value="reverse" checked>
+      <label for="contactChoice2">逆質問</label>
+    </p>
+  {% elif nextgenre == 'random' %}
+      <p>ジャンル<br>
+        <input type="radio" id="contactChoice3" name="contact" value="random" checked>
+        <label for="contactChoice3">ランダム</label>
+        <input type="radio" id="contactChoice1" name="contact" value="classic">
+        <label for="contactChoice1">定番</label>
+        <input type="radio" id="contactChoice2" name="contact" value="reverse" >
+        <label for="contactChoice2">逆質問</label>
+      </p>
+  {% else %}
+      <p>ジャンル<br>
+        <input type="radio" id="contactChoice3" name="contact" value="random">
+        <label for="contactChoice3">ランダム</label>
+        <input type="radio" id="contactChoice1" name="contact" value="classic"  checked>
+        <label for="contactChoice1">定番</label>
+        <input type="radio" id="contactChoice2" name="contact" value="reverse">
+        <label for="contactChoice2">逆質問</label>
+      </p>
+  {% endif %}
+  <p>
+    質問:{{object_list.id}}
+    <textarea id="qestionid" name="qestionid" cols="0" rows="0" style="display: None;" readonly>{{object_list.id}}</textarea>
+    <br>
+    {% if object_list.Contributor %}
+    (投稿者:{{object_list.Contributor}})
+    {% endif%}
+    <br>
+    {% if not object_list.id == None  %}
+    <textarea id="question" name="question" cols="30" rows="5" readonly>{{object_list.Question}}</textarea>
+    {% else %}
+    <p>質問が存在しません。</p>
+    {% endif%}
+  </p>
+  <script
+    src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js">
+    </script>
+  <button type="button" onclick="synthesizeSpeech()">テキスト読み上げを実行(課金)</button>
+  <script>
+    function synthesizeSpeech() {
+      var regionText = 'japanwest';
+      phraseText = document.getElementById("question").value;
+
+      let speechConfig = SpeechSDK.SpeechConfig.fromSubscription(`{{key|safe}}`, regionText);
+      speechConfig.speechSynthesisLanguage = "ja-JP";
+      speechConfig.speechSynthesisVoiceName = "ja-JP-NanamiNeural";
+
+      const synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig);
+      synthesizer.speakTextAsync(
+        phraseText,
+        function (result) {
+          console.log(result);
+          synthesizer.close();
+          synthesizer = undefined;
+        }, function (err) {
+          console.log(err);
+          synthesizer.close();
+          synthesizer = undefined;
+        }
+      )
+    }
+  </script>
+  <!-- </div> -->
+  <p>あなたの回答<br>
+    <textarea id="ans" name="ans" cols="30" rows="5">{{ soundtext }}</textarea>
+  </p>
+  
+  <p><input type="number" id="time" name="" min="3" max="60" value="3">秒</p>
+  <button type="button" onclick="speechtoText2()">録音開始</button>
+  <a id="download" download="" style="display: None;">Download</a>
+
+  <!-- <button id="stop">Stop</button> -->
+  <script src="{% static 'js/SpeechRecognition.js' %}"></script>
+
+  {% csrf_token %}
+  <input type="file" name="testfile">
+  <button type="submit">アップロード</button>
+
+  {% if not myfile == None %}
+  <audio controls>
+    <source id="downloadaudio" src="{% static 'sound/'|add:myfile %}">
+  </audio>
+  {% endif %}
+
+  <p>メモ<br>
+    <textarea name="memo" id="memo" cols="30" rows="5"></textarea>
+  </p>
+
+  <p>フィードバックリクエスト<br>
+    <select name="fbreq" id="fbreq">
+      <option value="">idを選択</option>
+      {% for account in accounts %}
+      <option value="{{ account }}">{{ account }}</option>
+      {% endfor %}
+    </select>
+  </p>
+
+  <p class="formbutton">
+    <button class="hensyubutton" type="button" onclick="history.back()"> <img
+        src="{% static 'images/mark_arrow_left.png' %}" height="80" width="100" /></button>
+    <button id="reloadBtn" class="hensyubutton" type="button"> <img src="{% static 'images/mark_arrow_reload.png' %}"
+        height="80" width="100" /></button>
+    <button id="nextBtn" class="hensyubutton" type="submit" onclick="location.href=`../{{object_list.id}}`"><img
+        src="{% static 'images/mark_arrow_right.png' %}" height="80" width="100" /></button>
+  </p>
+
+</form>
+<script>
+  reloadBtn.addEventListener('click', function () {
+    var ans = document.getElementById("ans");
+    var memo = document.getElementById("memo");
+    var fbreq = document.getElementById("fbreq");
+    var nextBtn = document.getElementById("nextBtn")
+
+    ans.value = "";
+    memo.value = "";
+    fbreq.value = "";
+
+    nextBtn.click();
+  });
+
+</script>
+
+<section>
+  <p><a href="/">戻る</a></p>
+</section>
+{%endblock%}
