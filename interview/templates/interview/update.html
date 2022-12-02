@@ -1,0 +1,44 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form class="mensetsu-form" action="" method="post" width="100%">
+  <div class="question_detail">
+  {% csrf_token %}
+  {% for obj in object_list %}
+  {% if obj.id == question_id %}
+          <h2>投稿者:{{ obj.Contributor }}</h2>
+          <p>
+            質問内容:
+            <br>
+            <textarea name="question" cols="30" rows="5">{{obj.Question}}</textarea>
+          </p>
+          <p>回答リクエスト<br>
+            <select name="AR" id="AR">
+              <option value="">idを選択</option> 
+              {% for account in accounts %}
+              <option value="{{ account }}">{{ account }}</option>
+              {% endfor %}
+              </select>
+          </p>
+      {% endif %}
+  {% endfor %}
+  </div>
+
+
+    
+  
+  
+  <p class="formbutton">
+    <button class="hensyubutton" type="button" onclick="history.back()"> <img src="{% static 'images/mark_arrow_left.png' %}" height ="80" width="100" /></button>
+    <button id="nextBtn" class="hensyubutton" type="submit"><img src="{% static 'images/mark_hensyu.png' %}" height ="80" width="100"/></button>
+  </p>
+
+</form>
+<script>
+  reloadBtn.addEventListener('click', function(){
+    location.reload();
+  });
+</script>
+{%endblock%}

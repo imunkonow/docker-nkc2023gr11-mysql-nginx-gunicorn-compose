@@ -1,0 +1,96 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+<form style="text-align: center;" class="mail-form" action="test.html" method="post">
+    <h2>{{UserID}}のメニュー</h2>
+    <div>
+    <img style="width:100%; max-width: 600px;" src="data:image/png;base64, {{ graph | safe }} " alt="">
+    </div>
+</form>
+
+<form class="mail-form" action="test.html" method="post">
+
+
+
+    <ul class="situmonwaku">
+        {% csrf_token%}
+        <p>{{UserID}}の投稿した質問</p>
+        {% for Contributors in Contributor %}
+                <div class="mail-textarea">
+                    <ol>
+                        <a href="/answer_let/{{ Contributors.id }}/">質問:{{Contributors.id}}</font></a>
+                        <li type="circle">質問内容:{{ Contributors.Question }}</li>
+                        <li type="circle">回答:{{ Contributors.Answer|default:"" }}</li>
+                        <li type="circle">メモ:{{ Contributors.Memo|default:"" }}</li>
+                        <li type="circle">ジャンル:{{ Contributors.Genre|default:"" }}</li>
+                    </ol>
+                </div>
+        {% endfor %}
+    </ul>
+    <ul class="situmonwaku">
+        {% csrf_token%}
+        <p>{{UserID}}の回答した質問</p>
+        {% for WhoAnswerss in WhoAnswers %}
+                <div class="mail-textarea">
+                    <ol>
+                        <a href="/feedback_let/{{ WhoAnswerss.id }}/">質問:{{WhoAnswerss.id}}</a>
+                        <li type="circle">質問内容:{{ WhoAnswerss.Question }}</li>
+                        <li type="circle">回答:{{ WhoAnswerss.Answer|default:"" }}</li>
+                        <li type="circle">メモ:{{ WhoAnswerss.Memo|default:"" }}</li>
+                        <li type="circle">ジャンル:{{ WhoAnswerss.Genre|default:"" }}</li>
+                    </ol>
+                </div>
+        {% endfor %}
+    </ul>
+    <ul class="situmonwaku">
+        {% csrf_token%}
+        <p>{{UserID}}のフィードバックした質問</p>
+        {% for FBers in FBer %}
+                <div class="mail-textarea">
+                    <ol>
+                        <a href="/feedback_only/{{ FBers.id }}/">質問:{{FBers.id}}</a>
+                        <li type="circle">質問内容:{{ FBers.Question }}</li>
+                        <li type="circle">回答:{{ FBers.Answer|default:"" }}</li>
+                        <li type="circle">メモ:{{ FBers.Memo|default:"" }}</li>
+                        <li type="circle">フィードバック:{{ FBers.FB|default:"" }}</li>
+                        <li type="circle">ジャンル:{{ FBers.Genre|default:"" }}</li>
+                    </ol>
+                </div>
+        {% endfor %}
+    </ul>
+    <ul class="situmonwaku">
+        {% csrf_token%}
+        <p>{{UserID}}に回答リクエストが来た質問</p>
+        {% for AnswerReqs in AnswerReq %}
+                <div class="mail-textarea">
+                    <ol>
+                        <a href="/answer_let/{{ AnswerReqs.id }}/">質問:{{AnswerReqs.id}}</a>
+                        <li type="circle">質問内容:{{ AnswerReqs.Question }}</li>
+                        <li type="circle">回答:{{ AnswerReqs.Answer|default:"" }}</li>
+                        <li type="circle">メモ:{{ AnswerReqs.Memo|default:"" }}</li>
+                        <li type="circle">ジャンル:{{ AnswerReqs.Genre|default:"" }}</li>
+                    </ol>
+                </div>
+        {% endfor %}
+    </ul>
+    <ul class="situmonwaku">
+        {% csrf_token%}
+        <p>{{UserID}}にフィードバックリクエストが来た質問</p>
+        {% for FBReqs in FBReq %}
+                <div class="mail-textarea">
+                    <ol>
+                        <a href="/feedback_let/{{ FBReqs.id }}/">質問:{{FBReqs.id}}</a>
+                        <li type="circle">質問内容:{{ FBReqs.Question }}</li>
+                        <li type="circle">回答:{{ FBReqs.Answer|default:"" }}</li>
+                        <li type="circle">メモ:{{ FBReqs.Memo|default:"" }}</li>
+                        <li type="circle">ジャンル:{{ FBReqs.Genre|default:"" }}</li>
+                    </ol>
+                </div>
+        {% endfor %}
+    </ul>
+
+    </form>
+    <button onclick="location.href='./'">戻る</button>
+    
+{% endblock %}

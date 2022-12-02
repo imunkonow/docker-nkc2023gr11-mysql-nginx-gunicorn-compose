@@ -1,0 +1,51 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="border-bottom: 1px solid;">
+
+<h1>csv DL and UP</h1>
+<h2>データベースアップロード(csv)</h2>
+<a href="{% static 'debug/mensetu.csv' %}" download>csv見本ダウンロード(文字化けの可能性あり)</a>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="testfile">
+    <button type="submit">アップロード</button>
+</form>
+<section>
+    <p><a href="javascript:history.back()">戻る</a></p>
+</section>
+</div>
+<!-- {% now "" %}
+<p><a href="{%  url 'pdf_read' %}">pdf_read</a></p> -->
+<h2>ユーザー一覧</h2>
+<section>
+    <table border="1" class="dataframe">
+        <thead>
+          <tr style="text-align: right;">
+            <th>ユーザーID</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for account in accounts%}
+            <tr>
+                <td>{{ account.user }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<h2>質問データベース</h2>
+<a href="{% static 'csv/mensetu.csv' %}" download>データベースダウンロード(csv)</a>
+<section>
+    <div style="width: 100%;">
+        {{ df|safe }}
+    </div>
+</section>
+
+<section>
+    <p><a href="javascript:history.back()">戻る</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="profile-container">
+
+        <div class="profile-header">
+            <img src="{% static ''|add:filename %}" alt="{{ UserID }}のプロフィール画像" class="icon">
+
+        </div>
+
+        <h1>{{UserID}}</h1>
+
+        <section class="profile-two-column">
+            <div class="profile-textarea">
+
+            <form method="post" class="profile-column">
+                {% csrf_token %}
+            <dl class="profile-memo">
+                <dt>ユーザー情報</dt>
+                <dd><strong>ユーザーID:</strong>
+                    {{ UserID }}</dd>
+                    <dd><strong>パスワード:</strong>
+                *****</dd>
+                <dd><strong>苗字:</strong>
+                    {{ last_name }}</dd>
+                    <!-- <dd>変更:<input type="text" name="changelast"></dd> -->
+                <dd><strong>名前:</strong>
+                    {{ first_name }}</dd>
+                    <!-- <dd>変更:<input type="text" name="changefirst"></dd> -->
+            </dl>
+            <!-- <input class="btn" type="submit" name="" value="登録"> -->
+            </form>      
+            </div>
+            <button onclick="location.href='./'">戻る</button>
+            <form method="POST" enctype="multipart/form-data">
+                <h2>プロフィール変更</h2>
+                {% csrf_token %}
+                <label for="last_name">苗字</label>
+                <input id="last_name" type="text" name="last_name">
+                <label for="first_name">名前</label>
+                <input id="first_name" type="text" name="first_name">
+                <br>
+                <label for="imgchange">画像</label>
+                <input id="imgchange" type="file" name="testfile">
+                <button type="submit">アップロード</button>
+            </form>
+        </section>
+    </div>
+</main>
+{% endblock %}
