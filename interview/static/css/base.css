@@ -1,0 +1,132 @@
+div.dataframe {
+  text-align: center;
+  width: 100%;
+}
+table.dataframe {
+  text-align: center;
+  width: 100%;
+}
+.headerlogoimg {
+  width: 100%;
+}
+
+.headerlogo {
+  width: 30%;
+}
+
+.headerlogoimgdiv {
+  width: 350px;
+  padding: 10px;
+}
+
+.headerbutton {
+  text-align: right;
+  width: 70%;
+  padding: 10px;
+  /* margin-top: 5%; */
+}
+
+.header {
+  display: flex;
+  height: 200px;
+  border: solid 1px;
+}
+
+.profliebutton {
+  width: 10%;
+}
+
+.profliebuttondiv {
+  display: flex;
+  width: 10px;
+}
+
+.headerbuttonimg {
+  width: 50px;
+  border: solid 1px;
+  background-color: #fff;
+}
+
+main {
+  padding: 5px;
+  /* text-align: center; */
+}
+
+img {
+  vertical-align: unset;
+}
+
+body {
+  background-image: url(../images/background.png);
+}
+
+/* マウスオーバー */
+.tooltip3 {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+.tooltip3 p {
+  margin: 0;
+  padding: 0;
+}
+.description3 {
+  display: none;
+  position: absolute;
+  font-size: 12px;
+  line-height: 1.6em;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  width: 150%;
+  text-align: center;
+}
+.tooltip3:hover .description3 {
+  display: inline-block;
+  top: 50px;
+  left: -15px;
+}
+
+/* スマートフォン向けCSS */
+@media (max-width: 926px) {
+  /* header */
+  .header {
+    height: auto;
+  }
+
+  .headerlogoimgdiv {
+    width: 180px;
+    padding: 5px;
+  }
+
+  .headerbutton {
+    margin-top: 10px;
+  }
+
+  .welcomediv {
+    font-size: 10px;
+  }
+
+  .welcomediv h2,
+  p {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .headerbuttonimg {
+    width: 45px;
+  }
+
+  /* マウスオーバー */
+  .description3 {
+    display: none;
+    position: absolute;
+    font-size: 12px;
+    line-height: 1.6em;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    width: 160%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,292 @@
+/* 共通css */
+.textarea{
+    background-color: white;
+    border:2px solid black;
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+.fuchidori{
+    color: rgb(255, 255, 255);
+    text-shadow:1px 1px 0 rgb(0, 0, 0), -1px -1px 0 rgb(0, 0, 0),
+                -1px 1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0),
+                0px 1px 0 rgb(0, 0, 0),  0-1px 0 rgb(0, 0, 0),
+                -1px 0 0 rgb(0, 0, 0), 1px 0 0 rgb(0, 0, 0);
+}
+
+.headline{
+    margin: 0;
+    font-size: 60px;
+}
+
+/* mail.html */
+.situmonwaku {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid;
+    padding: 0%;
+}
+
+.situmonwaku p {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 2px solid;
+    background-color:  rgb(225 225 225);
+}
+
+.mail-form {
+    margin: 0 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mail-textarea {
+    border-top: 2px solid;
+    border-radius: 0;
+    background: #fff;
+}
+
+/* profile.html */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.profile-header img.icon {
+    margin: auto;
+    height: 150px;
+    width: 150px;
+    background: #fff;
+    border-radius: 50%;
+    border: solid 6px #ffffff;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.profile-update {
+    font-size: 80%;
+}
+
+.profile-two-column {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+}
+
+.profile-column {
+    padding-left: 5%;
+    width: fit-content;
+}
+
+dl.profile-memo dt {
+    width: 100%;
+    font-weight: bold;
+    color: #000000;
+    padding: 0.5em 0;
+}
+  
+dl.profile-memo dd {
+    border-left: 1px dotted #d0d0d0;
+    margin: 0 0 0 1em;
+    padding: 0 0 1em 1em;
+}
+
+.profile-textarea {
+    border: 2px solid #000;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* question_List.html */
+.questionlist-form {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.questionlist-form>ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5%;
+    width: 100%;
+}
+
+/* question.html */
+.question {
+    display: flex;
+    justify-content: center;
+}
+
+.question-form {
+    font-size: 30px;
+    width: 30%
+}
+
+.question-form p {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.question-form label {
+    font-size: 20px;
+}
+
+.question-textarea {
+    width: 100%;
+    max-height: 500px;
+    min-height: 100px;
+    font-size: 50%;
+}
+
+.answer-request {
+    width: 70%;
+    font-size: 50%;
+}
+
+.question-button {
+    font-size: 50%;
+}
+
+/* question_Main.html */
+.container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container img {
+    width:100%;
+    height:auto;
+}
+
+.container p {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding:0;
+    margin:0;
+    font-size:50px;
+    color: rgb(255, 255, 255);
+}
+
+/* ポップアップ */
+.open {
+	cursor:pointer;
+    /*  デザイン */
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #7fbfff;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 0;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.3s;
+    border: 1px solid #333
+}
+#pop-up {
+	display: none;
+}
+.overlay {
+	display: none;
+}
+#pop-up:checked + .overlay {
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	background: rgba(0, 0, 0, 0.6);
+}
+.window {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 90vw;
+	max-width: 670px;
+    padding: 20px;
+	height: 490px;
+	background-color: #a4c8d2;
+	border-radius: 4px;
+	align-items: center;
+	transform: translate(-50%, -50%);
+}
+.close {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	cursor:pointer;
+}
+
+/* ポップアップ内のボタン */
+.popbutton{
+    border: 2px solid #000;
+    border-radius: 0;
+    background: #fff;
+    width: 100%;
+    height: 100px;
+    font-size:50px;
+    color: #fff;
+    margin: 10px auto 0px auto;
+}
+
+/* question.html */
+.question {
+    display: flex;
+    justify-content: center;
+}
+
+.question-form {
+    font-size: 30px;
+    width: 30%
+}
+
+.question-form p {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.question-form label {
+    font-size: 20px;
+}
+
+.question-textarea {
+    width: 100%;
+    max-height: 500px;
+    min-height: 100px;
+    font-size: 50%;
+}
+
+.answer-request {
+    width: 70%;
+    font-size: 50%;
+}
+
+.question-button {
+    font-size: 50%;
+}
+
+/* register.html */
+.register_reg_form {
+    background-color: #fff;
+    outline: 1px solid #333;
+    outline-offset: 0;
+}
+
+.register_reg_form td{
+    padding: 10px;
+    /**/
+}
