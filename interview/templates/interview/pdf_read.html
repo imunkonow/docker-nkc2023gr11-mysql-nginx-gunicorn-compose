@@ -1,0 +1,45 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="max-width: 400px; text-align: center; margin-left: auto; margin-right: auto;">
+	<main style=" width:100%;">
+<h1>pdf文字認識 pdf to text</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="testfile">
+    <button type="submit">アップロード</button>
+</form>
+
+  <!-- {% if upload_file_url %}
+    <p>アップロード時刻<a href="{{ upload_file_url }}">{{ upload_file_url }}</a></p>
+  {% endif %} -->
+
+  <!-- <iframe src="{% static 'text/pdf.text' %}" width="100%" height="100%"></iframe> -->
+
+
+  <!-- <p>{{ pdfpath }}</p>
+  <p>{{ textpath }}</p> -->
+  
+
+
+{% if not textpath == ""  %}
+  <p>{{ upload }}</p>
+  <!-- <p><object data="{% static ''|add:textpath %}" type="text/plain"></object></p> -->
+  <!-- <iframe src="{% static ''|add:textpath %}" width="100%" height="100%"></iframe> -->
+  <iframe src="{% static ''|add:pdfpath %}" width="90%" height="300"></iframe>
+  <p>{{ totext }}</p>
+  <textarea cols="60" rows="20" style="width: 80%;">{{ texthtml }}</textarea>
+  <p>ダウンロード</p>
+  <p><a href="{% static ''|add:textpath %}" download>.text</a></p>
+  <p><a href="{% static ''|add:pdfpath %}" download>.pdf</a></p>
+{% endif %}
+
+
+
+<section>
+    <p><a href="javascript:history.back()">戻る</a></p>
+</section>
+</main>
+</div>
+{% endblock %}

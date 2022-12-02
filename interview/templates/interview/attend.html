@@ -1,0 +1,52 @@
+{% extends 'interview/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div style="text-align: center;">
+    <form action="" method="post" style="padding: 10px; border: 1px solid;">
+        <div style="text-align: center;">
+            <img style="width: 100%; max-width:400px;" class="" src="{% static 'images/attend.png' %}" />
+        </div>
+        {% csrf_token %}
+        <h2 style="border: 1px solid;">出席番号の選択</h2>
+            <!-- <input class="answer-request" type="text" name="AR"> -->
+            <select name="attendNum">
+                <option value="">出席番号</option>
+                {% for attendNum in attendNums %}
+
+                <!-- <input type="radio" id="{{ account }}" name="AR" value="{{ account }}">
+                    <label for="{{ account }}">{{ account }}</label> -->
+                <option value="{{ attendNum }}">{{ attendNum }}</option>
+                {% endfor %}
+            </select>
+        <input type="submit" value="決定">
+        <p>出席番号{{ 出席番号 }}の偏差値:{{ 偏差値 }}</p>
+        <a href="{% static 'graph/graph.png' %}" download>グラフダウンロード</a>
+            <div style="width: 100%; text-align: center; padding: 10px;">
+                <img style="width: 95%; max-width:600px;" src="data:image/png;base64, {{ graph | safe }} " alt="">
+            </div>
+            <section>
+                <input class="question-button" type="button" value="戻る" onClick="location.href='./'" />
+            </section>
+            <h2 style="border: 1px solid;">CT4の欠席統計</h2>
+            <div style="width: 100%; text-align: center; padding: 10px;">
+                <img style="width: 95%; max-width:1000px;" src="data:image/png;base64, {{ graph2 | safe }} " alt="">
+            </div>
+            <div class='dataframe' style="width: 100%; padding:10px;">
+                {{ describe | safe }}
+            </div>
+
+            <h2 style="border: 1px solid;">CT4の欠席詳細</h2>
+            <div class='dataframe' style="width: 100%; padding:10px">
+                {{ allcsv | safe }}
+            </div>
+    </form>
+</div>
+<!-- <p>
+    <img style="width:100%; max-width: 800px;" src="data:image/png;base64, {{ piegraph | safe }} " alt="">
+</p> -->
+
+
+{% endblock %}
