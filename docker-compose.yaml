@@ -3,7 +3,6 @@ version: '3.7'
 services:
   gunicorn:
     image: gunicorn:docker-nkc2023gr11-mysql-nginx-gunicorn-compose
-    container_name: gunicorn_docker-nkc2023gr11-mysql-nginx-gunicorn-compose
     volumes:
       - .:/usr/src/app/
       - gunicorn:/var/run/gunicorn
@@ -34,7 +33,6 @@ services:
 
   nginx:
     image: nginx:1.17.7
-    container_name: nginx_docker-nkc2023gr11-mysql-nginx-gunicorn-compose
     depends_on:
       - gunicorn
     ports:
