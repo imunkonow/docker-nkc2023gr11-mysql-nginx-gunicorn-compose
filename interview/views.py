@@ -35,11 +35,7 @@ from django.http import HttpResponse
 from .models import DB
 from .models import Account
 
-try:
-    from . import azurespeech
-    import azure.cognitiveservices.speech as speechsdk
-except:
-    pass
+import azure.cognitiveservices.speech as speechsdk
 
 # 9/14
 
@@ -1058,7 +1054,6 @@ def mensetu(request, question_id="1"):
             ctx['soundtext'] = speech_recognition_result.text
         
         ctx['qs'] = qs
-        print(qs.id)
         return render(request, "interview/mensetu.html", ctx)
 
     else:

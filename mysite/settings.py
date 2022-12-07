@@ -108,9 +108,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'docker_django_mysql',
-        'USER': 'root',
-        'PASSWORD': 'admin',
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_ROOT_USER'),
+        'PASSWORD': os.environ.get('MYSQL_ROOT_PASSWORD'),
         'HOST': 'db',
         'PORT': '3306',
     }
@@ -197,3 +197,5 @@ MEDIA_URL = "interview/static/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'interview/static')
+
+CSRF_TRUSTED_ORIGINS = ['https://*.domain','https://*.127.0.0.1', 'http://*.127.0.0.1', 'https://*.localhost', 'http://*.localhost']

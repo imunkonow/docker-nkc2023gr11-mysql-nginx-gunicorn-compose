@@ -12,7 +12,6 @@ COPY ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 RUN mkdir -p /var/run/gunicorn
 
-COPY ./startup.sh /usr/src/app/startup.sh
-RUN chmod 744 /usr/src/app/startup.sh
-CMD ["/usr/src/app/startup.sh"]
-# CMD ["gunicorn", "mysite.wsgi", "--bind=unix:/var/run/gunicorn/gunicorn.sock"]
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+RUN chmod 744 /usr/src/app/entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
