@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:latest
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
       MYSQL_DATABASE: $MYSQL_DATABASE
@@ -19,7 +19,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - phpmyadmin_data:/var/lib/phpmyadmin
+      - ./phpmyadmin_data:/var/lib/phpmyadmin
     environment:
       PMA_HOST: db
       PMA_USER: $PMA_USER
