@@ -29,6 +29,7 @@ services:
       - db
 
   gunicorn:
+    build: .
     image: gunicorn:docker-nkc2023gr11-mysql-nginx-gunicorn-compose
     env_file: .env
     volumes:
@@ -43,7 +44,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./gunicorn.conf:/etc/nginx/conf.d/default.conf
+      - ./default.conf:/etc/nginx/conf.d/default.conf
       - gunicorn:/var/run/gunicorn
     restart: always
     depends_on:
