@@ -5,3 +5,5 @@ __pycache__/
 *$py.class
 .secretcsv
 node_modules
+mysql_data/*
+phpmyadmin_data/*
