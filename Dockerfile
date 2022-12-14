@@ -13,5 +13,5 @@ RUN pip install -r requirements.txt
 RUN mkdir -p /var/run/gunicorn
 
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-RUN chmod 777 /usr/src/app/entrypoint.sh
+RUN chmod +x /usr/src/app/entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
