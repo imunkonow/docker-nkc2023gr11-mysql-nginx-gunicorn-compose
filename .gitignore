@@ -1,12 +1,14 @@
-secret.py
 __pycache__
 __pycache__/
 *.py[cod]
 *$py.class
 node_modules
+
+# データベース
 mysql_data/*
 phpmyadmin_data/*
-# mysqlデータベースに新規作成したデータベース(Account, DB)
+
+# mysqlデータベースに新規作成したデータベース(Account, DB)のみ除外
 !mysql_data/docker_django_mysql
 
 # アップロードファイル

@@ -1,0 +1,1 @@
+subscription = 'your azure subscriptionkey'
