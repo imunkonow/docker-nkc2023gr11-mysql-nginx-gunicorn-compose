@@ -7,3 +7,4 @@ __pycache__/
 node_modules
 mysql_data/*
 phpmyadmin_data/*
+!mysql_data/docker_django_mysql
