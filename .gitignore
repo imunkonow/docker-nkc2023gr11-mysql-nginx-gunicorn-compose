@@ -3,8 +3,14 @@ __pycache__
 __pycache__/
 *.py[cod]
 *$py.class
-.secretcsv
 node_modules
 mysql_data/*
 phpmyadmin_data/*
+# mysqlデータベースに新規作成したデータベース(Account, DB)
 !mysql_data/docker_django_mysql
+
+# アップロードファイル
+interview/static/account_image/*
+interview/static/pdf/*
+interview/static/sound/*
+interview/static/text/*

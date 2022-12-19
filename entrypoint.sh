@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd /usr/src/app
+# docker-compose exec gunicorn python manage.py createsuperuser
 # docker-compose exec gunicorn python manage.py makemigrations --noinput
 # docker-compose exec gunicorn python manage.py migrate --noinput
 # docker-compose exec gunicorn python manage.py collectstatic --noinput
